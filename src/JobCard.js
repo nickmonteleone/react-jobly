@@ -1,7 +1,9 @@
+import "./JobCard.css"
+
 /**
  * job component for showing job info
  *
- * props: jobData {...}
+ * props: jobData { id, title, salary, equity, companyHandle, companyName }
  *
  * state: none
  *
@@ -13,12 +15,14 @@
 function JobCard({jobData}) {
   const {title, salary, equity} = jobData;
 
-
+  //TODO: might need way to show company on joblist but not on companydetail
   return (
     <div className='JobCard'>
-      <div>{title}</div>
-      <div>{salary}</div>
-      <div>{equity}</div>
+      <div className="JobCard-title">{title}</div>
+      <div className="JobCard-text">
+        <div>Salary: {salary}</div>
+        <div>Equity: {equity}</div>
+      </div>
     </div>
   )
 }

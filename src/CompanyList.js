@@ -2,6 +2,7 @@ import "./CompanyList.css"
 import { useState, useEffect } from "react";
 import SearchForm from "./SearchForm";
 import CompanyCard from "./CompanyCard";
+import LoadingSpinner from "./LoadingSpinner";
 import JoblyApi from "./api";
 
 /** CompanyList component for page to show list of jobs with search
@@ -11,7 +12,7 @@ import JoblyApi from "./api";
  *
  * States:
  * - companies [{ companyData }, { companyData }, ...]
- *
+ * - showLoading (true/false)
  *
  *
  * RoutesList -> CompanyList -> { SearchForm, CompanyCard }
@@ -19,33 +20,34 @@ import JoblyApi from "./api";
 
 function CompanyList () {
   const [companies, setCompanies] = useState([]);
-  console.log("companyList rendered, companies =", companies);
+  const [showLoading, setShowLoading] = useState(true);
 
+  console.log("CompanyList rendered, companies =", companies);
+
+  /** Get company list (optional search) */
+  async function getCompanies(nameLikeSearch=null) {
+    const companiesResult = await JoblyApi.getCompanies(nameLikeSearch);
+    console.log('', companiesResult)
+
+    setCompanies(companiesResult);
+    setShowLoading(false);
+  }
+
+  /** Get all companies on initial render. */
   useEffect(function getCompaniesOnMount() {
     console.log('useEffect called')
-    async function getCompanies() {
-      const companiesResult = await JoblyApi.getCompanies();
-      setCompanies(companiesResult);
-    }
     getCompanies();
   },[]);
 
-  //TODO: might be able to consolidate into one async function
-
-  async function searchForCompanies(nameLikeSearch) {
-    const companiesSearchResult = await JoblyApi.getCompanies(nameLikeSearch);
-    console.log('searchForCompanies',companiesSearchResult)
-
-    setCompanies(companiesSearchResult);
-  }
-
   return (
     <div className="CompanyList">
-      <SearchForm handleSave={searchForCompanies}/>
-
-      {companies.map(company =>
-        <CompanyCard key={company.handle} companyData={company} />
-      )}
+      <SearchForm handleSave={getCompanies}/>
+      {showLoading
+        ? <LoadingSpinner />
+        : companies.map(company =>
+            <CompanyCard key={company.handle} companyData={company} />
+          )
+      }
     </div>
   );
 }

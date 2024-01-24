@@ -1,0 +1,19 @@
+.JobCard {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  background-color: azure;
+  padding: 10px;
+}
+
+.JobCard-title {
+  text-align: left;
+  font-weight: 600;
+  font-size: small;
+}
+
+.JobCard-text {
+  font-weight: 300;
+  font-size: small;
+  text-align: left;
+}

@@ -9,6 +9,7 @@
  * {JobList, CompaniesList, Company} -> LoadingSpinner
  */
 function LoadingSpinner() {
+  console.log("LoadingSpinner rendered");
   return (
     <div className='LoadingSpinner'>
       Loading...

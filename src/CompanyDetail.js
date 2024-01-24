@@ -1,3 +1,4 @@
+import "./CompanyDetail.css"
 import JobCardList from "./JobCardList";
 
 /** ComapnyDetail component for page with details about company
@@ -19,14 +20,14 @@ function CompanyDetail ({ companyData }) {
 
   return (
     <div className="CompanyDetail">
-      <div className="CompanyCard-header">
-        <div className="CompanyCard-name">
+      <div className="CompanyDetail-header">
+        <div className="CompanyDetail-name">
           {name}
         </div>
         {logoUrl &&
-          <img src={logoUrl} alt={name} className="CompanyCard-image"></img>}
+          <img src={logoUrl} alt={name} className="CompanyDetail-image"></img>}
       </div>
-      <p className="CompanyCard-description">
+      <p className="CompanyDetail-description">
         {description}
       </p>
       <JobCardList jobs={jobs}/>

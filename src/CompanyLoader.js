@@ -11,6 +11,7 @@ import LoadingSpinner from "./LoadingSpinner";
  *
  * State:
  * - companyData ({companyData, ...})
+ * - showLoading (true/false)
  *
  * RoutesList -> CompanyLoader -> CompanyDetail
  */
@@ -33,7 +34,6 @@ function CompanyLoader() {
   }, []);
 
   return (
-
     <div className="CompanyLoader">
       {showLoading
         ? <LoadingSpinner />

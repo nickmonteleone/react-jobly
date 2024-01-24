@@ -14,8 +14,11 @@ import JobCard from "./JobCard";
 function JobCardList ({ jobs }) {
   return (
     <div className="JobCardList">
-      JobCardList component
-      {jobs.map(job => <JobCard jobData={job} />)}
+      {jobs.map(job =>
+        <JobCard
+          jobData={job}
+          key={job.id}
+      />)}
     </div>
   );
 }
