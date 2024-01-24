@@ -14,6 +14,7 @@ import JobCardList from "./JobCardList";
 function CompanyDetail ({ companyData }) {
   return (
     <div className="CompanyDetail">
+      CompanyDetail component
     </div>
   );
 }

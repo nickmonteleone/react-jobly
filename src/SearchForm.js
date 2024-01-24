@@ -13,7 +13,7 @@ function SearchForm({handleSave}) {
 
   return (
     <div className='SearchForm'>
-
+      Search Form component
     </div>
   )
 }

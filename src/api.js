@@ -68,14 +68,20 @@ class JoblyApi {
     return res.company;
   }
 
-  /** Get list of all companies.
+  /** Get list of companies, optional nameLike filter to search.
    *
-   * No inputs.
+   * Inputs: string to search for nameLike (optional)
    * Returns [ { handle, name, description, numEmployees, logoUrl }, ...]
+   * for companies that match search nameLike (or all companies if no search)
   */
 
-  static async getAllCompanies() {
-    let res = await this.request(`companies`);
+  static async getAllCompanies(nameLikeSearch=null) {
+    let data = {};
+    if (nameLikeSearch !== null) {
+      data.nameLike = nameLikeSearch;
+    }
+
+    let res = await this.request(`companies`, data);
     return res.companies;
   }
 

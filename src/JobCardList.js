@@ -14,6 +14,7 @@ import JobCard from "./JobCard";
 function JobCardList ({ jobs }) {
   return (
     <div className="JobCardList">
+      JobCardList component
     </div>
   );
 }

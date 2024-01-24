@@ -13,7 +13,7 @@ function CompanyCard() {
 
   return (
     <div className='CompanyCard'>
-
+      CompanyCard component
     </div>
   )
 }

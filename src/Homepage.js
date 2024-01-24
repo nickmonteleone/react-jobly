@@ -12,7 +12,7 @@ function Homepage() {
 
   return (
     <div className='Homepage'>
-
+      Homepage component
     </div>
   )
 }

@@ -14,9 +14,11 @@ import JobCardList from "./JobCardList";
  * RoutesList -> JobList -> { SearchForm, JobCardList }
  */
 
-function JobList ({ jobs, searchResults }) {
+function JobList () {
   return (
     <div className="JobList">
+      <SearchForm />
+      JobList component
     </div>
   );
 }

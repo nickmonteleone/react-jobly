@@ -14,6 +14,7 @@ function JobCard({jobData}) {
 
   return (
     <div className='JobCard'>
+      JobCard component
     </div>
   )
 }

@@ -15,26 +15,14 @@ import JoblyApi from "./api";
  * RoutesList -> CompanyList -> { SearchForm, CompanyCard }
  */
 
-// function CompanyList ({}) {
-//   const [companies, setCompanies] = useState();
+function CompanyList () {
 
-//   useEffect(function fetchCompanyDataWhenMounted() {
-//     async function fetchCompanyData() {
-//       const companiesResult = await JoblyApi.getAllCompanies();
-//       setCompanies(companiesResult);
-//     }
-//     fetchCompanyData();
-//   },[]);
-
-
-//   return (
-//     <div className="CompanyList">
-//       {companies.map(company =>
-//         <div key={company.handle},
-//         <div>company.name</div>,
-//         <div>company.description</div>)}
-//     </div>
-//   );
-// }
+  return (
+    <div className="CompanyList">
+      <SearchForm />
+      CompanyList component
+    </div>
+  );
+}
 
 export default CompanyList;

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useParams } from "react-router-dom";
 import CompanyDetail from "./CompanyDetail"
 
 /** CompanyLoader component to get company data based on url param
@@ -13,8 +14,10 @@ import CompanyDetail from "./CompanyDetail"
  */
 
 function CompanyLoader ({ companyData }) {
+  const { companyName } = useParams();
   return (
     <div className="CompanyLoader">
+      CompanyLoader component. companyName: {companyName}
     </div>
   );
 }

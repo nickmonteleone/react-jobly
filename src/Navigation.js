@@ -1,3 +1,4 @@
+import "./Navigation.css";
 import { NavLink } from "react-router-dom";
 
 /** Navigation component to go to different pages
@@ -13,11 +14,11 @@ import { NavLink } from "react-router-dom";
 
 function Navigation() {
   return (
-    <ul>
-      <li><NavLink to="/">Jobly</NavLink></li>
-      <li><NavLink to="/companies">Companies</NavLink></li>
-      <li><NavLink to="/jobs">Jobs</NavLink></li>
-    </ul>
+    <nav className="Navigation">
+      <NavLink to="/">Jobly</NavLink>
+      <NavLink to="/companies">Companies</NavLink>
+      <NavLink to="/jobs">Jobs</NavLink>
+    </nav>
   );
 }
 
