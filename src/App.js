@@ -3,9 +3,20 @@ import { BrowserRouter } from 'react-router-dom';
 import RoutesList from './RoutesList';
 import Navigation from './Navigation';
 
-//TODO: add docstring
+/** App component for jobly
+ *
+ * Props:
+ * -None
+ *
+ * States:
+ * -None
+ *
+ * App -> {Navigation, RoutesList}
+ */
 
 function App() {
+  console.log("App component rendered");
+
   return (
     <div className="App">
       <BrowserRouter>

@@ -1,3 +1,4 @@
+import "./NotFound.css"
 /**
  * rendes a not found page when url doesn't exist
  *
@@ -11,7 +12,7 @@
 function NotFound() {
   return (
     <div className='NotFound'>
-      Page not found
+      <h1>Page not found..</h1>
     </div>
   )
 }

@@ -21,3 +21,13 @@ nav a:hover {
   color: rgb(69, 142, 214);
   text-decoration: none;
 }
+
+.Navigation {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.Navigation-pages {
+  align-items: end;
+}

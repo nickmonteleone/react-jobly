@@ -1,3 +1,5 @@
+import "./Homepage.css"
+
 /**
  * renders homepage
  *
@@ -9,14 +11,15 @@
  */
 
 function Homepage() {
+  console.log("Homepage component rendered");
 
   return (
-    <>
-    <h1 className='Homepage'>
+    <div className='Homepage'>
+    <h1>
       Jobly
     </h1>
-    <h2>Find jobs and stuff</h2>
-    </>
+    <h2>Find jobs and stuff!</h2>
+    </div>
   )
 }
 

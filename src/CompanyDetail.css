@@ -1,7 +1,3 @@
-.CompanyDetail{
-  background-color: rgb(117, 117, 246);
-}
-
 .CompanyDetail-image {
   width: 50px;
 }
@@ -9,17 +5,22 @@
 .CompanyDetail-name {
   text-align: left;
   font-weight: 600;
-  font-size: small;
+  font-size: x-large;
+  color: rgb(232, 230, 227);
+  text-shadow: rgb(37, 40, 42) 2px 2px 5px;
 }
 
 .CompanyDetail-description {
   font-weight: 300;
-  font-size: small;
+  font-size: x-large;
   text-align: left;
   padding: 10px;
+  color: rgb(232, 230, 227);
+  text-shadow: rgb(37, 40, 42) 2px 2px 5px;
 }
 
 .CompanyDetail-header {
+  margin: 10px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;

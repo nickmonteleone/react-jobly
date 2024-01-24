@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import CompanyDetail from "./CompanyDetail";
 import JoblyApi from "./api";
 import LoadingSpinner from "./LoadingSpinner";
@@ -20,15 +20,24 @@ function CompanyLoader() {
   const { companyHandle } = useParams();
   const [companyData, setCompanyData] = useState();
   const [showLoading, setShowLoading] = useState(true);
+  const navigate = useNavigate();
 
   console.log("companyLoader rendered:", companyHandle, companyData);
 
   useEffect(function getCompanyDataOnMount() {
     console.log('useEffect called');
     async function getCompanyData() {
-      const companyDataResult = await JoblyApi.getCompany(companyHandle);
-      setCompanyData(companyDataResult);
-      setShowLoading(false);
+      try {
+        const companyDataResult = await JoblyApi.getCompany(companyHandle);
+        console.log("companyDataResult", companyDataResult);
+        setCompanyData(companyDataResult);
+        setShowLoading(false);
+      }
+      catch (err) {
+        // On error redirect to not found page.
+        console.log("Error fetching company:", err);
+        navigate(`/company-not-found/${companyHandle}`)
+      }
     }
     getCompanyData();
   }, []);

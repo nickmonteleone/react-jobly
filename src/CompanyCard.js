@@ -1,8 +1,7 @@
 import "./CompanyCard.css";
 import { Link } from "react-router-dom";
 
-/**
- * renders info about a single company
+/** Renders info about a single company
  *
  * props: companyData { handle, name, description, numEmployees, logoUrl }
  *
@@ -16,6 +15,7 @@ function CompanyCard({ companyData }) {
   console.log("companyCard rendered, companyData =", companyData);
 
   const { name, handle, description, logoUrl } = companyData;
+
   return (
     <Link
       className='CompanyCard text-reset text-decoration-none'
