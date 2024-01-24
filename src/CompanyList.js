@@ -11,12 +11,13 @@ import JoblyApi from "./api";
  * States:
  * - companies [{ companyData }, { companyData }, ...]
  * - searchResults [{ companyData }, { companyData }, ...]
+ * //TODO: don't need searchResults, can update on next render.
  *
  * RoutesList -> CompanyList -> { SearchForm, CompanyCard }
  */
 
 function CompanyList () {
-
+  // TODO: add console log and CompanyCard
   return (
     <div className="CompanyList">
       <SearchForm />

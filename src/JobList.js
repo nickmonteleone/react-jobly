@@ -15,6 +15,7 @@ import JobCardList from "./JobCardList";
  */
 
 function JobList () {
+  //TODO: add dummy JobCardList and JobCard components. Add console.logs
   return (
     <div className="JobList">
       <SearchForm />

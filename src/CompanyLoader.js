@@ -13,7 +13,7 @@ import CompanyDetail from "./CompanyDetail"
  * RoutesList -> CompanyLoader -> CompanyDetail
  */
 
-function CompanyLoader ({ companyData }) {
+function CompanyLoader () {
   const { companyName } = useParams();
   return (
     <div className="CompanyLoader">

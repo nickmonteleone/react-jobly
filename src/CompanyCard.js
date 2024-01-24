@@ -9,7 +9,7 @@
  *
  */
 
-function CompanyCard() {
+function CompanyCard({ companyData }) {
 
   return (
     <div className='CompanyCard'>

@@ -3,6 +3,8 @@ import { BrowserRouter } from 'react-router-dom';
 import RoutesList from './RoutesList';
 import Navigation from './Navigation';
 
+//TODO: add docstring
+
 function App() {
   return (
     <div className="App">
