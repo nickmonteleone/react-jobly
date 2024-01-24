@@ -1,3 +1,4 @@
+import { getByTitle } from "@testing-library/react";
 import JobCard from "./JobCard";
 
 /** JobCardList component to show a list of job cards
@@ -8,7 +9,7 @@ import JobCard from "./JobCard";
  * States:
  * - None
  *
- * JobList -> JobCardList -> JobCard
+ * JobList, companyDetail -> JobCardList -> JobCard
  */
 
 function JobCardList ({ jobs }) {
@@ -16,7 +17,10 @@ function JobCardList ({ jobs }) {
     <div className="JobCardList">
       {jobs.map(job =>
         <JobCard
-          jobData={job}
+          title={job.title}
+          salary={job.salary}
+          equity={job.equity}
+          companyName={job.companyName}
           key={job.id}
       />)}
     </div>
