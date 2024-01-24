@@ -10,18 +10,40 @@ import JoblyApi from "./api";
  *
  * States:
  * - companies [{ companyData }, { companyData }, ...]
- * - searchResults [{ companyData }, { companyData }, ...]
- * //TODO: don't need searchResults, can update on next render.
+ *
+ *
  *
  * RoutesList -> CompanyList -> { SearchForm, CompanyCard }
  */
 
 function CompanyList () {
+
+  const [companies, setCompanies] = useState([]);
+  console.log("companyList rendered =", companies);
+
+  useEffect(function getCompanyDataOnMount() {
+    async function getCompanyData() {
+
+      const companiesResult = await JoblyApi.getCompanies();
+      console.log(companiesResult);
+      setCompanies(companiesResult);
+    }
+    getCompanyData();
+  },[]);
+
+
+
+
+  //map through company data in render
+
+
+
   // TODO: add console log and CompanyCard
   return (
     <div className="CompanyList">
       <SearchForm />
-      CompanyList component
+
+      {companies.map(company => company.name)}
     </div>
   );
 }
