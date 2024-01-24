@@ -16,6 +16,17 @@ class JoblyApi {
     "SI6InRlc3R1c2VyIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTU5ODE1OTI1OX0." +
     "FtrMwBQwe6Ue-glIFgz_Nf8XxRT2YecFCiSpYL0fCXc";
 
+  /** Static method to request data from back-end api
+   *
+   * Inputs:
+   * - endpoint (not including base_url)
+   * - data (obj or array to be converted into json body)
+   * - method (default "GET")
+   *
+   * Return:
+   * - request result json obj
+   */
+
   static async request(endpoint, data = {}, method = "GET") {
     const url = new URL(`${BASE_URL}/${endpoint}`);
     const headers = {
@@ -45,14 +56,45 @@ class JoblyApi {
 
   // Individual API routes
 
-  /** Get details on a company by handle. */
+  /** Get details on a company by handle.
+   *
+   * Input company handle.
+   * Returns { handle, name, description, numEmployees, logoUrl, jobs }
+   * where jobs is [{ id, title, salary, equity }, ...]
+  */
 
   static async getCompany(handle) {
     let res = await this.request(`companies/${handle}`);
     return res.company;
   }
 
-  // obviously, you'll add a lot here ...
+  /** Get list of all companies.
+   *
+   * No inputs.
+   * Returns [ { handle, name, description, numEmployees, logoUrl }, ...]
+  */
+
+  static async getAllCompanies() {
+    let res = await this.request(`companies`);
+    return res.companies;
+  }
+
+  /** Get list of jobs, optional title filter to search.
+   *
+   * Inputs: string to search for title (optional)
+   * Returns [ { id, title, salary, equity, companyHandle, companyName }, ...]
+   * for jobs that match search title (or all jobs if no search)
+  */
+
+  static async getJobs(titleSearch=null) {
+    let data = {};
+    if (titleSearch !== null) {
+      data.title = titleSearch;
+    }
+
+    const res = await this.request(`jobs`, data);
+    return res.jobs;
+  }
 }
 
 export default JoblyApi;
