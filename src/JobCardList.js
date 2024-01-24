@@ -15,6 +15,7 @@ function JobCardList ({ jobs }) {
   return (
     <div className="JobCardList">
       JobCardList component
+      {jobs.map(job => <JobCard jobData={job} />)}
     </div>
   );
 }

@@ -11,10 +11,14 @@
 
 
 function JobCard({jobData}) {
+  const {title, salary, equity} = jobData;
+
 
   return (
     <div className='JobCard'>
-      JobCard component
+      <div>{title}</div>
+      <div>{salary}</div>
+      <div>{equity}</div>
     </div>
   )
 }
