@@ -22,7 +22,7 @@ function CompanyCard({ companyData }) {
           {name}
         </div>
         {logoUrl &&
-        <img src={logoUrl} alt={name} class="CompanyCard-image"></img>}
+        <img src={logoUrl} alt={name} className="CompanyCard-image"></img>}
       </div>
       <p className="CompanyCard-description">
         {description}

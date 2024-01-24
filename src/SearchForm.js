@@ -13,10 +13,31 @@ import { useState } from "react";
 function SearchForm({handleSave}) {
   const [formData, setFormData] = useState({searchText: ""})
 //TODO: build out form to get input for namelikesearch, call callback on submit
+
+
+  function handleChange(evt) {
+    const {name, value } = evt.target;
+    setFormData(fData => ({
+      ...fData,
+      [name]: value
+    }));
+  }
+
+
+  function handleSubmit(evt) {
+    evt.preventDefault();
+    console.log('handleSubmit formData', formData)
+    handleSave(formData.searchText);
+  }
+
+
+
+
   return (
-    <div className='SearchForm'>
-      Search Form component
-    </div>
+    <form className='SearchForm'>
+      <input name='searchText' onChange={handleChange}></input>
+      <button onClick={handleSubmit}>Search</button>
+    </form>
   )
 }
 

@@ -22,6 +22,7 @@ function CompanyList () {
   console.log("companyList rendered, companies =", companies);
 
   useEffect(function getCompanyDataOnMount() {
+    console.log('useEffect called')
     async function getCompanyData() {
       const companiesResult = await JoblyApi.getCompanies();
       setCompanies(companiesResult);
@@ -31,6 +32,7 @@ function CompanyList () {
 
   async function searchForCompanies(nameLikeSearch) {
     const companiesSearchResult = await JoblyApi.getCompanies(nameLikeSearch);
+    console.log('searchForCompanies',companiesSearchResult)
     setCompanies(companiesSearchResult);
   }
 
@@ -39,7 +41,7 @@ function CompanyList () {
       <SearchForm handleSave={searchForCompanies}/>
 
       {companies.map(company =>
-        <CompanyCard companyData={company} />
+        <CompanyCard key={company.handle} companyData={company} />
       )}
     </div>
   );
