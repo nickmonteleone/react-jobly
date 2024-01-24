@@ -1,6 +1,6 @@
 import "./NotFound.css"
 /**
- * rendes a not found page when url doesn't exist
+ * renders a not found page when url doesn't exist
  *
  * props: none
  *

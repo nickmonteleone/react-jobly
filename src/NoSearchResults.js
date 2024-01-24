@@ -1,4 +1,4 @@
-
+import './NoSearchResults.css';
 
 /**
  * renders a no results message when no results are found
@@ -14,7 +14,7 @@
 function NoSearchResults() {
   return (
     <div className='NoSearchResults'>
-      Sorry, no reults found.
+      Sorry, no results found.
     </div>
   )
 }

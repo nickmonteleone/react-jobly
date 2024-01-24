@@ -20,6 +20,7 @@ function CompanyLoader() {
   const { companyHandle } = useParams();
   const [companyData, setCompanyData] = useState();
   const [showLoading, setShowLoading] = useState(true);
+  //navigation hook for not found
   const navigate = useNavigate();
 
   console.log("companyLoader rendered:", companyHandle, companyData);

@@ -4,6 +4,7 @@ import SearchForm from "./SearchForm";
 import JobCardList from "./JobCardList";
 import LoadingSpinner from "./LoadingSpinner";
 import JoblyApi from "./api";
+import NoSearchResults from "./NoSearchResults";
 
 /** JobList component for page to show list of jobs with search
  *
@@ -14,7 +15,8 @@ import JoblyApi from "./api";
  * - jobs [{ jobData }, { jobData }, ...]
  * - showLoading (true/false)
  *
- * RoutesList -> JobList -> { SearchForm, JobCardList }
+ * RoutesList -> JobList ->
+ * { SearchForm, JobCardList, LoadingSpinner, NoSearchResults }
  */
 
 function JobList () {
@@ -26,7 +28,6 @@ function JobList () {
   /** Get job list (optional search) */
   async function getJobs(titleSearch=null) {
     const jobsResult = await JoblyApi.getJobs(titleSearch);
-    console.log('', jobsResult)
 
     setJobs(jobsResult);
     setShowLoading(false);
@@ -46,6 +47,7 @@ function JobList () {
         ? <LoadingSpinner />
         : <JobCardList jobs={jobs}/>
       }
+      {(jobs.length === 0 && !showLoading) && <NoSearchResults />}
     </div>
   );
 }
