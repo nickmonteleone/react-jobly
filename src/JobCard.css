@@ -17,3 +17,8 @@
   font-size: small;
   text-align: left;
 }
+
+.JobCard-companyName {
+  text-align: left;
+  font-size: small;
+}

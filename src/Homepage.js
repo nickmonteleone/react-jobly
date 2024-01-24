@@ -11,9 +11,12 @@
 function Homepage() {
 
   return (
-    <div className='Homepage'>
-      Homepage component
-    </div>
+    <>
+    <h1 className='Homepage'>
+      Jobly
+    </h1>
+    <h2>Find jobs and stuff</h2>
+    </>
   )
 }
 
