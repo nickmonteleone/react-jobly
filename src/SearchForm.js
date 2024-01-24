@@ -11,7 +11,7 @@ import { useState } from "react";
 */
 
 function SearchForm({handleSave}) {
-  const [formData, setFormData] = useState({nameLikeSearch: ""})
+  const [formData, setFormData] = useState({searchText: ""})
 //TODO: build out form to get input for namelikesearch, call callback on submit
   return (
     <div className='SearchForm'>
