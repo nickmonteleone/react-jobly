@@ -1,4 +1,5 @@
-import "./CompanyCard.css"
+import "./CompanyCard.css";
+import { Link } from "react-router-dom";
 
 /**
  * renders info about a single company
@@ -14,20 +15,22 @@ import "./CompanyCard.css"
 function CompanyCard({ companyData }) {
   console.log("companyCard rendered, companyData =", companyData);
 
-  const { name, description, logoUrl } = companyData;
+  const { name, handle, description, logoUrl } = companyData;
   return (
-    <div className='CompanyCard'>
+    <Link
+      className='CompanyCard text-reset text-decoration-none'
+      to={`/companies/${handle}`}>
       <div className="CompanyCard-header">
         <div className="CompanyCard-name">
           {name}
         </div>
         {logoUrl &&
-        <img src={logoUrl} alt={name} className="CompanyCard-image"></img>}
+          <img src={logoUrl} alt={name} className="CompanyCard-image"></img>}
       </div>
       <p className="CompanyCard-description">
         {description}
       </p>
-    </div>
+    </Link>
   );
 }
 

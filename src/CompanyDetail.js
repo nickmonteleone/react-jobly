@@ -12,9 +12,23 @@ import JobCardList from "./JobCardList";
  */
 
 function CompanyDetail ({ companyData }) {
+  console.log("companyDetail rendered, companyData =", companyData);
+
+  //TODO: update to have all data for detail page
+  const { name, description, logoUrl } = companyData;
+
   return (
     <div className="CompanyDetail">
-      CompanyDetail component
+      <div className="CompanyCard-header">
+        <div className="CompanyCard-name">
+          {name}
+        </div>
+        {logoUrl &&
+          <img src={logoUrl} alt={name} className="CompanyCard-image"></img>}
+      </div>
+      <p className="CompanyCard-description">
+        {description}
+      </p>
     </div>
   );
 }

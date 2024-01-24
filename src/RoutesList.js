@@ -22,7 +22,7 @@ function RoutesList() {
     <Routes>
       <Route path="/jobs" element={<JobList />} />
       <Route path="/companies" element={<CompanyList />} />
-      <Route path="/companies/:companyName" element={<CompanyLoader />} />
+      <Route path="/companies/:companyHandle" element={<CompanyLoader />} />
       <Route path="/" element={<Homepage />} />
       <Route path="*" element={<NotFound />} />
     </Routes>

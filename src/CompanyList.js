@@ -21,18 +21,21 @@ function CompanyList () {
   const [companies, setCompanies] = useState([]);
   console.log("companyList rendered, companies =", companies);
 
-  useEffect(function getCompanyDataOnMount() {
+  useEffect(function getCompaniesOnMount() {
     console.log('useEffect called')
-    async function getCompanyData() {
+    async function getCompanies() {
       const companiesResult = await JoblyApi.getCompanies();
       setCompanies(companiesResult);
     }
-    getCompanyData();
+    getCompanies();
   },[]);
+
+  //TODO: might be able to consolidate into one async function
 
   async function searchForCompanies(nameLikeSearch) {
     const companiesSearchResult = await JoblyApi.getCompanies(nameLikeSearch);
     console.log('searchForCompanies',companiesSearchResult)
+
     setCompanies(companiesSearchResult);
   }
 

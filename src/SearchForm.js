@@ -1,3 +1,5 @@
+import "./SearchForm.css"
+
 import { useState } from "react";
 
 /**
@@ -12,9 +14,8 @@ import { useState } from "react";
 
 function SearchForm({handleSave}) {
   const [formData, setFormData] = useState({searchText: ""})
-//TODO: build out form to get input for namelikesearch, call callback on submit
 
-
+  /** Handle input to form. */
   function handleChange(evt) {
     const {name, value } = evt.target;
     setFormData(fData => ({
@@ -23,20 +24,22 @@ function SearchForm({handleSave}) {
     }));
   }
 
-
+  /** Call callback function on form submit. */
   function handleSubmit(evt) {
     evt.preventDefault();
     console.log('handleSubmit formData', formData)
     handleSave(formData.searchText);
   }
 
-
-
-
   return (
-    <form className='SearchForm'>
-      <input name='searchText' onChange={handleChange}></input>
-      <button onClick={handleSubmit}>Search</button>
+    <form className='SearchForm form-group'>
+      <input
+        className="form-control"
+        name='searchText'
+        onChange={handleChange}
+        placeholder="Enter search term..."
+      />
+      <button className="btn-secondary btn" onClick={handleSubmit}>Search</button>
     </form>
   )
 }
