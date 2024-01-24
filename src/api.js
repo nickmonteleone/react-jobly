@@ -81,7 +81,7 @@ class JoblyApi {
       data.nameLike = nameLikeSearch;
     }
 
-    let res = await this.request(`companies`, data);
+    const res = await this.request(`companies`, data);
     return res.companies;
   }
 

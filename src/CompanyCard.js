@@ -1,7 +1,9 @@
+import "./CompanyCard.css"
+
 /**
  * renders info about a single company
  *
- * props: companyData {...}
+ * props: companyData { handle, name, description, numEmployees, logoUrl }
  *
  * state: none
  *
@@ -10,12 +12,23 @@
  */
 
 function CompanyCard({ companyData }) {
+  console.log("companyCard rendered, companyData =", companyData);
 
+  const { name, description, logoUrl } = companyData;
   return (
     <div className='CompanyCard'>
-      CompanyCard component
+      <div className="CompanyCard-header">
+        <div className="CompanyCard-name">
+          {name}
+        </div>
+        {logoUrl &&
+        <img src={logoUrl} alt={name} class="CompanyCard-image"></img>}
+      </div>
+      <p className="CompanyCard-description">
+        {description}
+      </p>
     </div>
-  )
+  );
 }
 
 

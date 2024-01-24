@@ -1,3 +1,4 @@
+import "./CompanyList.css"
 import { useState, useEffect } from "react";
 import SearchForm from "./SearchForm";
 import CompanyCard from "./CompanyCard";
@@ -17,33 +18,29 @@ import JoblyApi from "./api";
  */
 
 function CompanyList () {
-
   const [companies, setCompanies] = useState([]);
-  console.log("companyList rendered =", companies);
+  console.log("companyList rendered, companies =", companies);
 
   useEffect(function getCompanyDataOnMount() {
     async function getCompanyData() {
-
       const companiesResult = await JoblyApi.getCompanies();
-      console.log(companiesResult);
       setCompanies(companiesResult);
     }
     getCompanyData();
   },[]);
 
+  async function searchForCompanies(nameLikeSearch) {
+    const companiesSearchResult = await JoblyApi.getCompanies(nameLikeSearch);
+    setCompanies(companiesSearchResult);
+  }
 
-
-
-  //map through company data in render
-
-
-
-  // TODO: add console log and CompanyCard
   return (
     <div className="CompanyList">
-      <SearchForm />
+      <SearchForm handleSave={searchForCompanies}/>
 
-      {companies.map(company => company.name)}
+      {companies.map(company =>
+        <CompanyCard companyData={company} />
+      )}
     </div>
   );
 }

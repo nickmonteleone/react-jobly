@@ -1,0 +1,29 @@
+.CompanyCard {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  background-color: azure;
+  padding: 10px
+}
+
+.CompanyCard-image {
+  width: 50px;
+}
+
+.CompanyCard-name {
+  text-align: left;
+  font-weight: 600;
+  font-size: small;
+}
+
+.CompanyCard-description {
+  font-weight: 300;
+  font-size: small;
+  text-align: left
+}
+
+.CompanyCard-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}

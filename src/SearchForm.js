@@ -1,3 +1,4 @@
+import { useState } from "react";
 
 /**
  * renders a search form component
@@ -10,7 +11,8 @@
 */
 
 function SearchForm({handleSave}) {
-
+  const [formData, setFormData] = useState({nameLikeSearch: ""})
+//TODO: build out form to get input for namelikesearch, call callback on submit
   return (
     <div className='SearchForm'>
       Search Form component
