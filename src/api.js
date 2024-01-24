@@ -75,7 +75,7 @@ class JoblyApi {
    * for companies that match search nameLike (or all companies if no search)
   */
 
-  static async getAllCompanies(nameLikeSearch=null) {
+  static async getCompanies(nameLikeSearch=null) {
     let data = {};
     if (nameLikeSearch !== null) {
       data.nameLike = nameLikeSearch;
