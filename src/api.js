@@ -101,6 +101,36 @@ class JoblyApi {
     const res = await this.request(`jobs`, data);
     return res.jobs;
   }
+
+
+  /**
+   *   takes user data and calls /users/register endpoint   *
+   *    registers new user
+   *
+   *    returns {user, token}
+   */
+  static async signup(userData) {
+
+    try {
+      const userToken = await this.request(
+        'users/register',userData,'POST');
+    } catch(BadRequestError) {
+      throw new Error('bad request')''
+    }
+
+      return userToken;
+  }
+
+  /**
+   * takes username makes a fetch requst to users/:username endpoint
+   *
+   * return userdata -> {username, firstName, lastName, email, isAdmin}
+   */
+
+  static async getUser(username) {
+
+
+  }
 }
 
 export default JoblyApi;

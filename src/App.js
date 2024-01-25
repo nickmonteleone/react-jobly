@@ -21,15 +21,20 @@ function App() {
   console.log("App component rendered");
 
   /** Authenticate a user for log in. */
-  function authenticate(loginFormInput){
+  function authenticate(loginInput){
     const userInfo = {}; // add api call to log in
 
     setUser(userInfo)
   }
 
   /** Sign up a user. */
-  function signup(signupFormInput){
-    const userInfo = signupFormInput; // add api call to sign up
+  function signup(signupInput){
+    const userInfo = signupInput;
+
+
+
+
+
 
     setUser(userInfo)
   }
