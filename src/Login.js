@@ -16,3 +16,5 @@ function Login({ authenticate }) {
     </div>
   )
 }
+
+export default Login;

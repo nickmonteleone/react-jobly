@@ -16,3 +16,5 @@ function SignupForm({ signup }) {
     </div>
   )
 }
+
+export default SignupForm;

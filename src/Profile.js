@@ -17,3 +17,5 @@ function Profile({ editUser, user }) {
     </div>
   )
 }
+
+export default Profile;

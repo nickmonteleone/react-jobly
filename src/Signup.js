@@ -16,3 +16,5 @@ function Signup({ signup }) {
     </div>
   )
 }
+
+export default Signup;

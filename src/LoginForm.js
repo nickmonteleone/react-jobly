@@ -9,7 +9,7 @@
  */
 
 
-function LoginFom({ authenticate }) {
+function LoginForm({ authenticate }) {
 
   return (
     <div>
@@ -17,3 +17,5 @@ function LoginFom({ authenticate }) {
     </div>
   )
 }
+
+export default LoginForm;
