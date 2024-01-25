@@ -18,7 +18,6 @@ function Navigation() {
       <NavLink to="/">Jobly</NavLink>
       <div className="Navigation-pages">
         <NavLink to="/companies">Companies</NavLink>
-        <NavLink to="/companies/baker-santos">baker-santos</NavLink>
         <NavLink to="/jobs">Jobs</NavLink>
       </div>
     </nav>

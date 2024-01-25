@@ -3,8 +3,8 @@ import "./JobCard.css"
 /**
  * job component for showing job info
  *
- * props: jobData { title, salary, equity, companyName }
- * //TODO: add that companyName is optional
+ * props: jobData { title, salary, equity, companyName(optional) }*
+ *
  * state: none
  *
  * jobCardList -> JobCard
