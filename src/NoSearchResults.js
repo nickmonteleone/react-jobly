@@ -14,7 +14,7 @@ import './NoSearchResults.css';
 function NoSearchResults() {
   return (
     <div className='NoSearchResults'>
-      Sorry, no results found.
+      <h2>Sorry, no results found.</h2>
     </div>
   )
 }

@@ -1,3 +1,7 @@
+.CompanyDetail{
+  height: 100vh;
+}
+
 .CompanyDetail-image {
   width: 50px;
 }

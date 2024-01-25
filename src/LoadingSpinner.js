@@ -1,3 +1,4 @@
+import "./LoadingSpinner.css"
 
 /**
  * renders a loading spinner when data is loading
@@ -12,7 +13,7 @@ function LoadingSpinner() {
   console.log("LoadingSpinner rendered");
   return (
     <div className='LoadingSpinner'>
-      Loading...
+      <h2>Loading...</h2>
     </div>
   )
 }
