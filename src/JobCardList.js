@@ -4,7 +4,7 @@ import JobCard from "./JobCard";
 /** JobCardList component to show a list of job cards
  *
  * Props:
- * - jobs [jobData {...},...] //TODO: add what keys need to be passed
+ * - jobs [{ id, title, salary, equity, companyHandle, companyName },...]
  *
  * States:
  * - None
@@ -13,7 +13,7 @@ import JobCard from "./JobCard";
  */
 
 function JobCardList ({ jobs }) {
-  // TODO: deconstruct into title, salary, ....
+
   return (
     <div className="JobCardList">
       {jobs.map(job =>

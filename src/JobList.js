@@ -12,7 +12,7 @@ import NoSearchResults from "./NoSearchResults";
  * -None
  *
  * States:
- * - jobs [{ jobData }, { jobData }, ...] //TODO: list out what jobData contains
+ * - jobs [{ id, title, salary, equity, companyHandle, companyName }, ...]
  * - showLoading (true/false)
  *
  * RoutesList -> JobList ->

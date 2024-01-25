@@ -11,8 +11,8 @@ import NoSearchResults from "./NoSearchResults";
  * Props:
  * -None
  *
- * States: //TODO: list out what company data looks like
- * - companies [{ companyData }, { companyData }, ...]
+ * States:
+ * - companies [{ { handle, name, description, numEmployees, logoUrl }, ...]
  * - showLoading (true/false)
  *
  *

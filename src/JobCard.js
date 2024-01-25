@@ -3,27 +3,25 @@ import "./JobCard.css";
 /**
  * job component for showing job info
  *
- * props: jobData { title, salary, equity, companyName(optional) }*
+ * props: jobData { title, salary, equity, companyName}
+ *  (salary, equity, and companyName are optional)
  *
  * state: none
  *
  * jobCardList -> JobCard
- *
  */
 
-function JobCard({ title, salary, equity, companyName }) {
-  // TODO: add conditional for salary and equity if not found
-  console.log('salary', salary);
-  console.log('equity', equity);
+function JobCard({ title, salary=null, equity=null, companyName=null }) {
+  // Only show companyName if not null. Replace salary/equity with N/A if null.
   return (
     <div className='JobCard'>
       <div className="JobCard-title">{title}</div>
-      {companyName &&
+      {(companyName !== null) &&
         <div className='JobCard-companyName'>{companyName}</div>
       }
       <div className="JobCard-text">
-        <div>Salary: {(salary || salary >= 0) ? salary : 'N/A'}</div>
-        <div>Equity: {(equity || equity >= 0) ? equity : 'N/A'}</div>
+        <div>Salary: {(salary !== null) ? salary : 'N/A'}</div>
+        <div>Equity: {(equity !== null) ? equity : 'N/A'}</div>
       </div>
     </div>
   );
