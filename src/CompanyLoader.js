@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import CompanyDetail from "./CompanyDetail";
 import JoblyApi from "./api";
 import LoadingSpinner from "./LoadingSpinner";
+import NotFound from "./NotFound";
 
 /** CompanyLoader component to get company data based on url param
  *
@@ -20,12 +21,15 @@ function CompanyLoader() {
   const { companyHandle } = useParams();
   const [companyData, setCompanyData] = useState();
   const [showLoading, setShowLoading] = useState(true);
-  //navigation hook for not found
-  const navigate = useNavigate();
+  const [error, setError] = useState(false);
+
+
+
 
   console.log("companyLoader rendered:", companyHandle, companyData);
 
-  // TODO: add comment for useEffect
+  // calling jobly api, getting company data,
+  // changing showLoading state to false
   useEffect(function getCompanyDataOnMount() {
     console.log('useEffect called');
     async function getCompanyData() {
@@ -38,21 +42,25 @@ function CompanyLoader() {
       catch (err) {
         // On error redirect to not found page.
         console.log("Error fetching company:", err);
-        navigate(`/company-not-found/${companyHandle}`);
-        // TODO: add errors state, handle in component return and show NotFound component
-        // return <Navigate to="/not-found"/>
+        setShowLoading(false);
+        setError(true);
+
       }
     }
     getCompanyData();
-    //TODO: need to watch for url parameter, add to dependency list
-  }, []);
+  }, [companyHandle]);
 
   return (
+
     <div className="CompanyLoader">
-      {showLoading
-        ? <LoadingSpinner />
-        : <CompanyDetail companyData={companyData} />
+      {error
+        ? <NotFound />
+        : showLoading
+          ? <LoadingSpinner />
+          : <CompanyDetail companyData={companyData} />
       }
+
+
     </div>
   );
 }
