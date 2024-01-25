@@ -12,7 +12,7 @@ import NoSearchResults from "./NoSearchResults";
  * -None
  *
  * States:
- * - jobs [{ jobData }, { jobData }, ...]
+ * - jobs [{ jobData }, { jobData }, ...] //TODO: list out what jobData contains
  * - showLoading (true/false)
  *
  * RoutesList -> JobList ->
@@ -33,7 +33,7 @@ function JobList () {
     setShowLoading(false);
   }
 
-  /** Get all jobs  on initial render. */
+  // Get all jobs  on initial render.
   useEffect(function getJobsOnMount() {
     console.log('useEffect called')
     getJobs();

@@ -25,6 +25,7 @@ function CompanyLoader() {
 
   console.log("companyLoader rendered:", companyHandle, companyData);
 
+  // TODO: add comment for useEffect
   useEffect(function getCompanyDataOnMount() {
     console.log('useEffect called');
     async function getCompanyData() {
@@ -37,10 +38,13 @@ function CompanyLoader() {
       catch (err) {
         // On error redirect to not found page.
         console.log("Error fetching company:", err);
-        navigate(`/company-not-found/${companyHandle}`)
+        navigate(`/company-not-found/${companyHandle}`);
+        // TODO: add errors state, handle in component return and show NotFound component
+        // return <Navigate to="/not-found"/>
       }
     }
     getCompanyData();
+    //TODO: need to watch for url parameter, add to dependency list
   }, []);
 
   return (

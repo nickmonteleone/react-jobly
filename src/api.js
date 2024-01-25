@@ -74,7 +74,7 @@ class JoblyApi {
    * Returns [ { handle, name, description, numEmployees, logoUrl }, ...]
    * for companies that match search nameLike (or all companies if no search)
   */
-
+  // TODO: change nameLikeSearch to be nameLike for consistency
   static async getCompanies(nameLikeSearch=null) {
     let data = {};
     if (nameLikeSearch !== null) {
@@ -91,7 +91,7 @@ class JoblyApi {
    * Returns [ { id, title, salary, equity, companyHandle, companyName }, ...]
    * for jobs that match search title (or all jobs if no search)
   */
-
+  // TODO: change titleSearch to be title for consistency
   static async getJobs(titleSearch=null) {
     let data = {};
     if (titleSearch !== null) {

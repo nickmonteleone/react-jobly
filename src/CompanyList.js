@@ -11,7 +11,7 @@ import NoSearchResults from "./NoSearchResults";
  * Props:
  * -None
  *
- * States:
+ * States: //TODO: list out what company data looks like
  * - companies [{ companyData }, { companyData }, ...]
  * - showLoading (true/false)
  *
@@ -35,7 +35,7 @@ function CompanyList () {
     setShowLoading(false);
   }
 
-  /** Get all companies on initial render. */
+  // Get all companies on initial render.
   useEffect(function getCompaniesOnMount() {
     console.log('useEffect called')
     getCompanies();

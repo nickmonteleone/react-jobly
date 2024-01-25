@@ -3,8 +3,8 @@ import "./JobCard.css"
 /**
  * job component for showing job info
  *
- * props: jobData { id, title, salary, equity, companyHandle, companyName }
- *
+ * props: jobData { title, salary, equity, companyName }
+ * //TODO: add that companyName is optional
  * state: none
  *
  * jobCardList -> JobCard
@@ -12,7 +12,7 @@ import "./JobCard.css"
  */
 
 function JobCard({title, salary, equity, companyName}) {
-
+  // TODO: add conditional for salary and equity if not found
   return (
     <div className='JobCard'>
       <div className="JobCard-title">{title}</div>
