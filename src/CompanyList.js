@@ -28,6 +28,8 @@ function CompanyList () {
 
   /** Get company list (optional search) */
   async function getCompanies(nameLikeSearch=null) {
+    //TODO: setting loading true here should make work for loadind in search
+    // could do same for jobs
     const companiesResult = await JoblyApi.getCompanies(nameLikeSearch);
     console.log('companiesResult', companiesResult)
 
@@ -51,7 +53,7 @@ function CompanyList () {
           <CompanyCard key={company.handle} companyData={company} />
           )
         }
-        {(companies.length < 1 && !showLoading) && <NoSearchResults /> }
+        {(companies.length === 0 && !showLoading) && <NoSearchResults /> }
     </div>
   );
 }
