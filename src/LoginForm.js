@@ -77,6 +77,7 @@ function LoginForm({ authenticate }) {
       }
     </form>
   );
+  //TODO: key can just be index since unique to this form
 }
 
 export default LoginForm;

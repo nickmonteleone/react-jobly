@@ -22,37 +22,35 @@ import JoblyApi from './api';
 
 function App() {
   const [user, setUser] = useState(null);
-  const [loggedIn, setLoggedIn] = useState(false);
-  const [username, setUsername] = useState(null);
+  // const [loggedIn, setLoggedIn] = useState(false);
   const [message, setMessage] = useState(null);
-
+  //TODO: remove loggedIn state because it is derived from user
+  const loggedIn = (user !== null);
   console.log("App component rendered, user:", user);
   console.log("App username:", username, "loggedIn:", loggedIn);
 
   // Get user data when user name changes (i.e. log in or signup success)
-  useEffect(function getUserDataOnMount() {
-    async function getUserData() {
-      console.log("App useEffect getUserDataOnMount. username:", username);
-      if (username !== null) {
-        const userData = await JoblyApi.getUser(username);
-        setUser(userData);
-        console.log("userdata acquired", userData);
-        setMessage(`Welcome, ${userData.firstName}!`);
-      } else {
-        setUser(null);
-      }
+  async function getUserData(username) {
+    console.log("App useEffect getUserDataOnMount. username:", username);
+    if (username !== null) {
+      const userData = await JoblyApi.getUser(username);
+      setUser(userData);
+      console.log("userdata acquired", userData);
+      setMessage(`Welcome, ${userData.firstName}!`);
+    } else {
+      setUser(null);
     }
-    getUserData();
-  }, [username]);
-
+  }
+  //TODO: remove setter for logged in
   /** Authenticate a user for log in. */
   async function authenticate(loginInput) {
     const loginResult = await JoblyApi.login(loginInput);
     console.log("login result:", loginResult);
+    await getUserData(loginInput.username);
     setLoggedIn(loginResult);
-    setUsername(loginInput.username);
   }
 
+  //TODO: repeat change to use getUserData
   /** Sign up a user. */
   async function signup(signupInput) {
     const signinResult = await JoblyApi.signup(signupInput);
@@ -71,6 +69,7 @@ function App() {
   }
 
   return (
+    // TODO: pass isLoggedin const because it will be easier to use in children
     <userContext.Provider value={{ user, message }}>
       <div className="App">
         <BrowserRouter>

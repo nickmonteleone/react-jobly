@@ -13,16 +13,17 @@ import { NavLink, Link } from "react-router-dom";
 */
 
 function Navigation({ logout, user }) {
+  //TODO: adjust to use fragments instead of div when not needed
   return (
     <nav className="Navigation">
       <NavLink to="/">Jobly</NavLink>
       <div className="Navigation-pages">
       {
         user === null
-        ? <div>
+        ? <>
             <NavLink to="/login">Login</NavLink>
             <NavLink to="/signup">Signup</NavLink>
-          </div>
+          </>
         : <div>
             <NavLink to="/companies">Companies</NavLink>
             <NavLink to="/jobs">Jobs</NavLink>

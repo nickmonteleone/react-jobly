@@ -16,7 +16,8 @@ import userContext from "./userContext";
 function Homepage() {
   const { user, message } = useContext(userContext);
   console.log("Homepage - user:", user, "message:", message);
-
+  //TODO: update to use isLoggedin from context
+  //TODO: change message to be static
   return (
     <div className='Homepage'>
       {message &&
