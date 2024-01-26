@@ -42,9 +42,10 @@ function RoutesList({ user, authenticate, signup }) {
       <Route path="/companies" element={<CompanyList />} />
       <Route path="/companies/:companyHandle" element={<CompanyLoader />} />
       <Route path="/profile" element={<Profile />} />
+      <Route path="/login" element={<Navigate to="/" />} />
+      <Route path="/signup" element={<Navigate to="/" />} />
       <Route path="/" element={<Homepage />} />
       <Route path="*" element={<NotFound />} />
-
     </Routes>
   );
 }

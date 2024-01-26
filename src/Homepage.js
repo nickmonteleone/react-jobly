@@ -14,22 +14,11 @@ import userContext from "./userContext";
  */
 
 function Homepage() {
-  const { errors, user, message } = useContext(userContext);
-  console.log("Homepage - Errors: ", errors, "user:", user);
-  console.log("homepage message:", message);
+  const { user, message } = useContext(userContext);
+  console.log("Homepage - user:", user, "message:", message);
 
   return (
     <div className='Homepage'>
-      {errors &&
-        <ul>
-          <h3>Errors:</h3>
-          {
-            errors.map((err, idx) =>
-              <li key={idx}>{err}</li>
-            )
-          }
-        </ul>
-      }
       {message &&
         <h3>{message}</h3>
       }

@@ -49,6 +49,8 @@ function SignupForm({ signup }) {
         name="username"
         onChange={handleChange}
         placeholder="username"
+        required
+        autoComplete="false"
       />
       <input
         className="form-control"
@@ -56,18 +58,24 @@ function SignupForm({ signup }) {
         type="password"
         onChange={handleChange}
         placeholder="password"
+        required
+        autoComplete="false"
       />
       <input
         className="form-control"
         name="firstName"
         onChange={handleChange}
         placeholder="first name"
+        required
+        autoComplete="false"
       />
       <input
         className="form-control"
         name="lastName"
         onChange={handleChange}
         placeholder="last name"
+        required
+        autoComplete="false"
       />
       <input
         className="form-control"
@@ -75,6 +83,8 @@ function SignupForm({ signup }) {
         type="email"
         onChange={handleChange}
         placeholder="email"
+        required
+        autoComplete="false"
       />
       <button className="btn-secondary btn" onClick={handleSubmit}>
         Signup

@@ -1,6 +1,6 @@
 import './App.css';
 import { useState, useEffect } from 'react';
-import { BrowserRouter, useNavigate } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import RoutesList from './RoutesList';
 import Navigation from './Navigation';
 import userContext from "./userContext";

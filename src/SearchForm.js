@@ -38,6 +38,8 @@ function SearchForm({handleSave}) {
         name='searchText'
         onChange={handleChange}
         placeholder="Enter search term..."
+        required
+        autoComplete="false"
       />
       <button className="btn-secondary btn" onClick={handleSubmit}>Search</button>
     </form>

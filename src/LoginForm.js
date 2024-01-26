@@ -1,5 +1,4 @@
 import { useState, useContext } from "react";
-import { useNavigate } from "react-router-dom";
 import userContext from "./userContext";
 
 /**
@@ -15,15 +14,12 @@ import userContext from "./userContext";
 
 function LoginForm({ authenticate }) {
   const { errors } = useContext(userContext);
-
   const [formData, setFormData] = useState(
     {
       username: "",
       password: "",
     }
   );
-
-  const navigate = useNavigate();
 
   /** Handle input to form. */
   function handleChange(evt) {
@@ -39,9 +35,7 @@ function LoginForm({ authenticate }) {
     evt.preventDefault();
     console.log('login formData', formData);
     authenticate(formData);
-    navigate('/');
   }
-
 
   return (
     <form className="LoginForm">
@@ -50,6 +44,8 @@ function LoginForm({ authenticate }) {
         name="username"
         onChange={handleChange}
         placeholder="username"
+        required
+        autoComplete="false"
       />
       <input
         className="form-control"
@@ -57,18 +53,21 @@ function LoginForm({ authenticate }) {
         type="password"
         onChange={handleChange}
         placeholder="password"
+        required
+        autoComplete="false"
       />
       <button className="btn-secondary btn" onClick={handleSubmit}>
         Login
       </button>
       { errors &&
-      <ul>
+      <div>
+        <h3>Errors:</h3>
         {
-          errors.map(err =>
-          <li>{err}</li>
+          errors.map((err, idx) =>
+          <div key={`error-${idx}`}>{err}</div>
           )
         }
-      </ul>
+      </div>
       }
     </form>
   );
