@@ -5,6 +5,7 @@ import RoutesList from './RoutesList';
 import Navigation from './Navigation';
 import userContext from "./userContext";
 import JoblyApi from './api';
+import useLocalStorage from 'use-local-storage';
 
 /** App component for jobly
  *
@@ -22,6 +23,7 @@ import JoblyApi from './api';
 
 function App() {
   const [user, setUser] = useState(null);
+  const [token, setToken] = useLocalStorage('name','');
   const isLoggedIn = (user !== null);
   console.log("App component rendered, user:", user);
   console.log("App user:", user, "loggedIn:", isLoggedIn);
@@ -40,16 +42,20 @@ function App() {
 
   /** Authenticate a user for log in. */
   async function authenticate(loginInput) {
-    const loginResult = await JoblyApi.login(loginInput);
-    console.log("login result:", loginResult);
+    const tokenResult = await JoblyApi.login(loginInput);
+    setToken(tokenResult);
+    console.log("token result:", tokenResult);
     await getUserData(loginInput.username);
   }
 
 
+
+
   /** Sign up a user. */
   async function signup(signupInput) {
-    const signinResult = await JoblyApi.signup(signupInput);
-    console.log("signin result:", signinResult);
+    const tokenResult = await JoblyApi.signup(signupInput);
+    setToken(tokenResult);
+    console.log("token result:", tokenResult);
     await getUserData(signupInput.username);
   }
 
@@ -57,6 +63,7 @@ function App() {
   function logout() {
     JoblyApi.logout();
     setUser(null);
+    setToken(null);
   }
 
   return (
@@ -73,3 +80,14 @@ function App() {
 }
 
 export default App;
+
+
+/**
+ * login / signup -> token in localstorage
+ *
+ * come back: -> check localstorage for token,
+ *  if there: assign to static token
+ *  if not: show logged out UI.
+ *
+ *
+ */

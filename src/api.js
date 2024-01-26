@@ -118,7 +118,7 @@ class JoblyApi {
       'auth/register', userData, 'POST');
 
     this.token = userTokenResult.token;
-    return true;
+    return this.token;
   }
 
 
@@ -134,7 +134,7 @@ class JoblyApi {
       'auth/token', userData, 'POST');
 
     this.token = userTokenResult.token;
-    return true;
+    return this.token;
   }
 
   /**
