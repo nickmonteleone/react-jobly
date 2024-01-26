@@ -71,13 +71,12 @@ function LoginForm({ authenticate }) {
         <div className="LoginForm-errors">
           <h3>Errors:</h3>
           {errors.map((err, idx) =>
-            <Alert key={`error-${idx}`} error={`- ${err}`} />
+            <Alert key={idx} error={`- ${err}`} />
           )}
         </div>
       }
     </form>
   );
-  //TODO: key can just be index since unique to this form
 }
 
 export default LoginForm;

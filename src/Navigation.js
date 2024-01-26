@@ -13,7 +13,6 @@ import { NavLink, Link } from "react-router-dom";
 */
 
 function Navigation({ logout, user }) {
-  //TODO: adjust to use fragments instead of div when not needed
   return (
     <nav className="Navigation">
       <NavLink to="/">Jobly</NavLink>
@@ -24,11 +23,11 @@ function Navigation({ logout, user }) {
             <NavLink to="/login">Login</NavLink>
             <NavLink to="/signup">Signup</NavLink>
           </>
-        : <div>
+        : <>
             <NavLink to="/companies">Companies</NavLink>
             <NavLink to="/jobs">Jobs</NavLink>
             <Link onClick={logout} to='/'>Logout {user.username}</Link>
-          </div>
+          </>
       }
       </div>
     </nav>

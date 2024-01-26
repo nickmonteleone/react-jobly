@@ -24,7 +24,7 @@ function App() {
   const [user, setUser] = useState(null);
   const isLoggedIn = (user !== null);
   console.log("App component rendered, user:", user);
-  console.log("App username:", username, "loggedIn:", loggedIn);
+  console.log("App user:", user, "loggedIn:", isLoggedIn);
 
   // Get user data when user name changes (i.e. log in or signup success)
   async function getUserData(username) {
@@ -33,7 +33,6 @@ function App() {
       const userData = await JoblyApi.getUser(username);
       setUser(userData);
       console.log("userdata acquired", userData);
-      setMessage(`Welcome, ${userData.firstName}!`);
     } else {
       setUser(null);
     }
@@ -51,20 +50,17 @@ function App() {
   async function signup(signupInput) {
     const signinResult = await JoblyApi.signup(signupInput);
     console.log("signin result:", signinResult);
-    await getUserData(LoginInput.username);
+    await getUserData(signupInput.username);
   }
 
   /** Log out a user from the app. */
   function logout() {
     JoblyApi.logout();
     setUser(null);
-    setUsername(null);
-    setLoggedIn(null);
-    setMessage('You have successsfully logged out.');
   }
 
   return (
-    <userContext.Provider value={{ user, message, isLoggedIn }}>
+    <userContext.Provider value={{ user, isLoggedIn }}>
       <div className="App">
         <BrowserRouter>
           <Navigation logout={logout} user={user} />

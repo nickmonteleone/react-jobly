@@ -97,7 +97,7 @@ function SignupForm({ signup }) {
         <div className="SignupForm-errors">
           <h3>Errors:</h3>
           {errors.map((err, idx) =>
-            <Alert key={`error-${idx}`} error={`${idx + 1}. ${err}`} />
+            <Alert key={idx} error={`${idx + 1}. ${err}`} />
           )}
         </div>
       }

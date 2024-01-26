@@ -14,20 +14,19 @@ import userContext from "./userContext";
  */
 
 function Homepage() {
-  const { user, message } = useContext(userContext);
-  console.log("Homepage - user:", user, "message:", message);
-  //TODO: update to use isLoggedin from context
-  //TODO: change message to be static
+  const { user, isLoggedIn } = useContext(userContext);
+  console.log("Homepage - user:", user);
+
   return (
     <div className='Homepage'>
-      {message &&
-        <h3>{message}</h3>
-      }
       <h1>
         Jobly
       </h1>
       <h2>Find jobs and stuff!</h2>
-      {user === null &&
+      { isLoggedIn ?
+      <h3>
+        Hi {user.username}!
+      </h3> :
         <div className="Homepage-buttons">
           <Link to="/signup">
             <button
