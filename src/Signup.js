@@ -1,3 +1,5 @@
+import SignupForm from "./SignupForm";
+
 /**
  * renders signup page
  *
@@ -11,8 +13,9 @@
 function Signup({ signup }) {
 
   return (
-    <div>
-
+    <div className="Signup">
+      <h1>Signup:</h1>
+      <SignupForm signup={signup} />
     </div>
   )
 }

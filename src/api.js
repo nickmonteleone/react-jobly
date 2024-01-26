@@ -75,7 +75,7 @@ class JoblyApi {
    * for companies that match search nameLike (or all companies if no search)
   */
 
-  static async getCompanies(nameLike=null) {
+  static async getCompanies(nameLike = null) {
     let data = {};
     if (nameLike !== null) {
       data.nameLike = nameLike;
@@ -92,7 +92,7 @@ class JoblyApi {
    * for jobs that match search title (or all jobs if no search)
   */
 
-  static async getJobs(title=null) {
+  static async getJobs(title = null) {
     let data = {};
     if (title !== null) {
       data.title = title;
@@ -104,21 +104,23 @@ class JoblyApi {
 
 
   /**
-   *   takes user data and calls /users/register endpoint   *
-   *    registers new user
+   * takes user data and calls /users/register endpoint   *
+   * Must include { username, password, firstName, lastName, email }
+   * registers new user
    *
-   *    returns {user, token}
+   * returns {user, token}
    */
   static async signup(userData) {
 
+    let userToken;
     try {
-      const userToken = await this.request(
-        'users/register',userData,'POST');
-    } catch(BadRequestError) {
-      throw new Error('bad request')''
+      userToken = await this.request(
+        'users/register', userData, 'POST');
+    } catch (BadRequestError) {
+      throw new Error('bad request');
     }
 
-      return userToken;
+    return userToken;
   }
 
   /**

@@ -28,9 +28,8 @@ function RoutesList({ user, authenticate, signup }) {
   if (user === null) {
     return (
       <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/profile" element={<Profile />} />
+        <Route path="/login" element={<Login authenticate={authenticate}/>} />
+        <Route path="/signup" element={<Signup signup={signup}/>} />
         <Route path="*" element={<Homepage />} />
       </Routes>
     );
@@ -42,6 +41,7 @@ function RoutesList({ user, authenticate, signup }) {
       <Route path="/jobs" element={<JobList />} />
       <Route path="/companies" element={<CompanyList />} />
       <Route path="/companies/:companyHandle" element={<CompanyLoader />} />
+      <Route path="/profile" element={<Profile />} />
       <Route path="/" element={<Homepage />} />
       <Route path="*" element={<NotFound />} />
     </Routes>

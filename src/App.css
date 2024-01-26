@@ -5,6 +5,10 @@
   background-repeat: repeat;
   background-attachment: fixed;
   background-position: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
   /* height: 100vh; */
 }
 
