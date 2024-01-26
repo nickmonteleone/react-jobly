@@ -12,9 +12,12 @@ class JoblyApi {
   // Remember, the backend needs to be authorized with a token
   // We're providing a token you can use to interact with the backend API
   // DON'T MODIFY THIS TOKEN
-  static token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZ" +
-    "SI6InRlc3R1c2VyIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTU5ODE1OTI1OX0." +
-    "FtrMwBQwe6Ue-glIFgz_Nf8XxRT2YecFCiSpYL0fCXc";
+  // static token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZ" +
+  //   "SI6InRlc3R1c2VyIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTU5ODE1OTI1OX0." +
+  //   "FtrMwBQwe6Ue-glIFgz_Nf8XxRT2YecFCiSpYL0fCXc";
+
+  // Token variable to be replaced with logged in user's token
+  static token;
 
   /** Static method to request data from back-end api
    *
@@ -106,7 +109,7 @@ class JoblyApi {
   /**
    * takes user data and calls /auth/register endpoint   *
    * Must include { username, password, firstName, lastName, email }
-   * registers new user
+   * registers new user, save token to static variable
    *
    * returns token
    */
@@ -114,23 +117,25 @@ class JoblyApi {
     const userTokenResult = await this.request(
       'auth/register', userData, 'POST');
 
-    return userTokenResult.token;
+    this.token = userTokenResult.token;
+    return true;
   }
 
 
-    /**
-   * takes user data and calls /auth/token endpoint   *
-   * Must include { username, password }
-   * logs in user
-   *
-   * returns token
-   */
-    static async login(userData) {
-      const userTokenResult = await this.request(
-        'auth/token', userData, 'POST');
+  /**
+ * takes user data and calls /auth/token endpoint   *
+ * Must include { username, password }
+ * logs in user, save token to static variable
+ *
+ * returns true for successful login
+ */
+  static async login(userData) {
+    const userTokenResult = await this.request(
+      'auth/token', userData, 'POST');
 
-      return userTokenResult.token;
-    }
+    this.token = userTokenResult.token;
+    return true;
+  }
 
   /**
    * takes username makes a fetch requst to users/:username endpoint
@@ -139,9 +144,11 @@ class JoblyApi {
    */
 
   static async getUser(username) {
-    const usersData = await this.request(`users`);
+    console.log('getting user:', username, 'token:', this.token)
 
-    return usersData.filter(user => user.username === username);
+    const userData = await this.request(`users/${username}`);
+
+    return userData.user;
   }
 }
 

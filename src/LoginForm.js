@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import userContext from "./userContext";
 
 /**
  * renders loginform
@@ -13,6 +14,8 @@ import { useNavigate } from "react-router-dom";
 
 
 function LoginForm({ authenticate }) {
+  const { errors } = useContext(userContext);
+
   const [formData, setFormData] = useState(
     {
       username: "",
@@ -58,6 +61,15 @@ function LoginForm({ authenticate }) {
       <button className="btn-secondary btn" onClick={handleSubmit}>
         Login
       </button>
+      { errors &&
+      <ul>
+        {
+          errors.map(err =>
+          <li>{err}</li>
+          )
+        }
+      </ul>
+      }
     </form>
   );
 }

@@ -14,6 +14,7 @@ function Login({ authenticate }) {
 
   return (
     <div className="Login">
+      <h1>Login:</h1>
       <LoginForm authenticate={authenticate}/>
     </div>
   )

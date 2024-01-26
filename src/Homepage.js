@@ -13,15 +13,25 @@ import userContext from "./userContext";
  */
 
 function Homepage() {
-  const { errors } = useContext(userContext);
-  console.log("Homepage component rendered");
-//if errors render them
+  const { errors, user, message } = useContext(userContext);
+  console.log("Homepage - Errors: ", errors, "user:", user);
+  console.log("homepage message:", message);
 
   return (
-    //TODO: errors not showing up on homepage
-
     <div className='Homepage'>
-    {errors && <h2>{errors[0]}</h2>}
+    { errors &&
+      <ul>
+        <h3>Errors:</h3>
+        {
+          errors.map(err =>
+          <li>{err}</li>
+          )
+        }
+      </ul>
+      }
+    { message &&
+      <h3>{message}</h3>
+    }
     <h1>
       Jobly
     </h1>
