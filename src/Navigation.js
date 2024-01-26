@@ -1,6 +1,7 @@
 import "./Navigation.css";
 import { NavLink } from "react-router-dom";
 
+
 /** Navigation component to go to different pages
  *
  * Props:
@@ -12,7 +13,7 @@ import { NavLink } from "react-router-dom";
  * App -> Navigation
 */
 
-function Navigation({ user }) {
+function Navigation({ logout, user }) {
   return (
     <nav className="Navigation">
       <NavLink to="/">Jobly</NavLink>
@@ -26,6 +27,7 @@ function Navigation({ user }) {
         : <div>
             <NavLink to="/companies">Companies</NavLink>
             <NavLink to="/jobs">Jobs</NavLink>
+            <NavLink onClick={logout} to='/'>Logout</NavLink>
           </div>
       }
       </div>

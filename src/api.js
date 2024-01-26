@@ -150,6 +150,13 @@ class JoblyApi {
 
     return userData.user;
   }
+
+
+  static logout(username) {
+    this.token = null;
+
+    return true;
+  }
 }
 
 export default JoblyApi;

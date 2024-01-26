@@ -75,15 +75,21 @@ function App() {
   }
 
   /** Log out a user from the app. */
-  function logOut() {
+  function logout() {
+    JoblyApi.logout();
     setUser(null);
+    setUsername(null);
+    setLoggedIn(null);
+    setMessage('You have successsfully logged out');
+
+    return 'you have successfully logged out';
   }
 
   return (
     <userContext.Provider value={{ user, errors, message }}>
       <div className="App">
         <BrowserRouter>
-          <Navigation user={user} />
+          <Navigation logout={logout} user={user} />
           <RoutesList user={user} signup={signup} authenticate={authenticate} />
         </BrowserRouter>
       </div>

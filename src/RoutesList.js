@@ -44,6 +44,7 @@ function RoutesList({ user, authenticate, signup }) {
       <Route path="/profile" element={<Profile />} />
       <Route path="/" element={<Homepage />} />
       <Route path="*" element={<NotFound />} />
+
     </Routes>
   );
 }

@@ -23,8 +23,8 @@ function Homepage() {
       <ul>
         <h3>Errors:</h3>
         {
-          errors.map(err =>
-          <li>{err}</li>
+          errors.map((err, idx) =>
+          <li key={idx}>{err}</li>
           )
         }
       </ul>
