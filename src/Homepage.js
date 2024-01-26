@@ -1,11 +1,12 @@
-import "./Homepage.css"
+import "./Homepage.css";
 import { useContext } from 'react';
+import { Link } from "react-router-dom";
 import userContext from "./userContext";
 
 /**
  * renders homepage
  *
- * props:none
+ * props: none
  *
  * state: none
  *
@@ -19,32 +20,42 @@ function Homepage() {
 
   return (
     <div className='Homepage'>
-    { errors &&
-      <ul>
-        <h3>Errors:</h3>
-        {
-          errors.map((err, idx) =>
-          <li key={idx}>{err}</li>
-          )
-        }
-      </ul>
+      {errors &&
+        <ul>
+          <h3>Errors:</h3>
+          {
+            errors.map((err, idx) =>
+              <li key={idx}>{err}</li>
+            )
+          }
+        </ul>
       }
-    { message &&
-      <h3>{message}</h3>
-    }
-    <h1>
-      Jobly
-    </h1>
-    <h2>Find jobs and stuff!</h2>
-    {user === null &&
-      <div>
-      <button>Signup</button>
-      <button>Login</button>
-      </div>
-    }
+      {message &&
+        <h3>{message}</h3>
+      }
+      <h1>
+        Jobly
+      </h1>
+      <h2>Find jobs and stuff!</h2>
+      {user === null &&
+        <div className="Homepage-buttons">
+          <Link to="/signup">
+            <button
+              className="btn btn-secondary">
+              Signup
+            </button>
+          </Link>
+          <Link to="/login">
+            <button
+              className="btn btn-secondary">
+              Login
+            </button>
+          </Link>
+        </div>
+      }
     </div>
 
-  )
+  );
 }
 
 export default Homepage;

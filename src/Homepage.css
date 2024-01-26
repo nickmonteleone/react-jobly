@@ -7,3 +7,12 @@
   margin-top: 20vh;
   height: 75vh;
 }
+
+.Homepage-buttons {
+  display: flex;
+  flex-direction: row;
+}
+
+.btn {
+  margin: 10px
+}
