@@ -13,6 +13,9 @@ import JoblyApi from './api';
  *
  * States:
  * -user - null or {username, firstName, lastName, email, isAdmin }
+ * -loggedIn (true/false)
+ * -username (logged in username)
+ * -message (login or logout message)
  *
  * App -> {Navigation, RoutesList}
  */
@@ -21,9 +24,6 @@ function App() {
   const [user, setUser] = useState(null);
   const [loggedIn, setLoggedIn] = useState(false);
   const [username, setUsername] = useState(null);
-  const [errors, setErrors] = useState({
-    signup: null, authenticate: null
-  });
   const [message, setMessage] = useState(null);
 
   console.log("App component rendered, user:", user);
@@ -47,39 +47,19 @@ function App() {
 
   /** Authenticate a user for log in. */
   async function authenticate(loginInput) {
-    try {
-      const loginResult = await JoblyApi.login(loginInput);
-      console.log("login result:", loginResult);
-      setLoggedIn(loginResult);
-      setUsername(loginInput.username);
-      setErrors({
-        signup: null, authenticate: null
-      });
-    }
-    catch (err) {
-      console.log("login failed:", err);
-      setErrors(data => ({...data, authenticate: err}));
-    }
+    const loginResult = await JoblyApi.login(loginInput);
+    console.log("login result:", loginResult);
+    setLoggedIn(loginResult);
+    setUsername(loginInput.username);
   }
 
   /** Sign up a user. */
   async function signup(signupInput) {
-
-    try {
       const signinResult = await JoblyApi.signup(signupInput);
       console.log("signin result:", signinResult);
       setLoggedIn(signinResult);
       setUsername(signupInput.username);
-      setErrors({
-        signup: null, authenticate: null
-      });
-    }
-    catch (err) {
-      console.log("signup failed:", err);
-      setErrors(data => ({...data, signup: err}));
-    };
   }
-
 
   /** Log out a user from the app. */
   function logout() {
@@ -87,13 +67,11 @@ function App() {
     setUser(null);
     setUsername(null);
     setLoggedIn(null);
-    setMessage('You have successsfully logged out');
-
-    return 'you have successfully logged out';
+    setMessage('You have successsfully logged out.');
   }
 
   return (
-    <userContext.Provider value={{ user, errors, message }}>
+    <userContext.Provider value={{ user, message }}>
       <div className="App">
         <BrowserRouter>
           <Navigation logout={logout} user={user} />

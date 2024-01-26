@@ -1,7 +1,6 @@
 import "./SignupForm.css";
-import { useState, useContext } from "react";
-import userContext from "./userContext";
-
+import { useState } from "react";
+import Alert from "./Alert";
 
 /**
  * renders signup form
@@ -23,9 +22,7 @@ function SignupForm({ signup }) {
       email: "",
     }
   );
-
-  const { errors } = useContext(userContext);
-
+  const [errors, setErrors] = useState(null);
 
   /** Handle input to form. */
   function handleChange(evt) {
@@ -37,10 +34,16 @@ function SignupForm({ signup }) {
   }
 
   /** Call callback function on form submit. */
-  function handleSubmit(evt) {
+  async function handleSubmit(evt) {
     evt.preventDefault();
     console.log('signup formData', formData);
-    signup(formData);
+    try {
+      await signup(formData);
+    }
+    catch (err) {
+      console.log("signup failed:", err);
+      setErrors(err);
+    }
   }
 
   return (
@@ -90,13 +93,12 @@ function SignupForm({ signup }) {
       <button className="btn-secondary btn" onClick={handleSubmit}>
         Signup
       </button>
-      {errors.signup &&
-        <div>
+      {errors &&
+        <div className="SignupForm-errors">
           <h3>Errors:</h3>
-          {errors.signup.map((err, idx) =>
-            <div className='SignupForm-Errors' key={`error-${idx}`}>{err}</div>
-            )
-          }
+          {errors.map((err, idx) =>
+            <Alert key={`error-${idx}`} error={`${idx + 1}. ${err}`} />
+          )}
         </div>
       }
     </form>

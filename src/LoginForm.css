@@ -1,11 +1,11 @@
-.SignupForm {
+.LoginForm {
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.SignupForm-errors{
+.LoginForm-errors{
   display: flex;
   flex-direction: column;
   align-items: center;

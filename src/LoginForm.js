@@ -1,19 +1,21 @@
-import { useState, useContext } from "react";
-import userContext from "./userContext";
+import { useState } from "react";
+import Alert from "./Alert";
 
 /**
  * renders loginform
  *
  * props: authenticate()
  *
- * state: formData
+ * state:
+ * - formData
+ * - errors
  *
  * login -> LoginFrom
  */
 
 
 function LoginForm({ authenticate }) {
-  const { errors } = useContext(userContext);
+  const [errors, setErrors] = useState(null);
   const [formData, setFormData] = useState(
     {
       username: "",
@@ -31,10 +33,16 @@ function LoginForm({ authenticate }) {
   }
 
   /** Call callback function on form submit. */
-  function handleSubmit(evt) {
+  async function handleSubmit(evt) {
     evt.preventDefault();
     console.log('login formData', formData);
-    authenticate(formData);
+    try {
+      await authenticate(formData);
+    }
+    catch (err) {
+      console.log("login failed:", err);
+      setErrors(err);
+    }
   }
 
   return (
@@ -59,15 +67,13 @@ function LoginForm({ authenticate }) {
       <button className="btn-secondary btn" onClick={handleSubmit}>
         Login
       </button>
-      { errors.authenticate &&
-      <div>
-        <h3>Errors:</h3>
-        {
-          errors.authenticate.map((err, idx) =>
-          <div key={`error-${idx}`}>{err}</div>
-          )
-        }
-      </div>
+      {errors &&
+        <div className="LoginForm-errors">
+          <h3>Errors:</h3>
+          {errors.map((err, idx) =>
+            <Alert key={`error-${idx}`} error={err} />
+          )}
+        </div>
       }
     </form>
   );

@@ -1,6 +1,5 @@
 import "./Navigation.css";
-import { NavLink } from "react-router-dom";
-
+import { NavLink, Link } from "react-router-dom";
 
 /** Navigation component to go to different pages
  *
@@ -27,7 +26,7 @@ function Navigation({ logout, user }) {
         : <div>
             <NavLink to="/companies">Companies</NavLink>
             <NavLink to="/jobs">Jobs</NavLink>
-            <NavLink onClick={logout} to='/'>Logout</NavLink>
+            <Link onClick={logout} to='/'>Logout {user.username}</Link>
           </div>
       }
       </div>
