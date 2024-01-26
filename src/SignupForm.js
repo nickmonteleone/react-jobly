@@ -1,6 +1,7 @@
-import "./Signup.css"
-import { useState } from "react";
-import { useNavigate } from 'react-router-dom';
+import "./SignupForm.css";
+import { useState, useContext } from "react";
+import userContext from "./userContext";
+
 
 /**
  * renders signup form
@@ -23,7 +24,8 @@ function SignupForm({ signup }) {
     }
   );
 
-  const navigate = useNavigate();
+  const { errors } = useContext(userContext);
+
 
   /** Handle input to form. */
   function handleChange(evt) {
@@ -39,7 +41,6 @@ function SignupForm({ signup }) {
     evt.preventDefault();
     console.log('signup formData', formData);
     signup(formData);
-    navigate('/');
   }
 
   return (
@@ -89,6 +90,15 @@ function SignupForm({ signup }) {
       <button className="btn-secondary btn" onClick={handleSubmit}>
         Signup
       </button>
+      {errors.signup &&
+        <div>
+          <h3>Errors:</h3>
+          {errors.signup.map((err, idx) =>
+            <div className='SignupForm-Errors' key={`error-${idx}`}>{err}</div>
+            )
+          }
+        </div>
+      }
     </form>
   );
 }

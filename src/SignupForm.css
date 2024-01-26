@@ -1,0 +1,11 @@
+.SignupForm {
+  width: 500px;
+}
+
+
+.SignupForm-Errors {
+
+  background-color: rgb(240, 78, 78);
+  font-weight: 600;
+  padding: 10px;
+};

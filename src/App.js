@@ -21,7 +21,9 @@ function App() {
   const [user, setUser] = useState(null);
   const [loggedIn, setLoggedIn] = useState(false);
   const [username, setUsername] = useState(null);
-  const [errors, setErrors] = useState(null);
+  const [errors, setErrors] = useState({
+    signup: null, authenticate: null
+  });
   const [message, setMessage] = useState(null);
 
   console.log("App component rendered, user:", user);
@@ -50,11 +52,13 @@ function App() {
       console.log("login result:", loginResult);
       setLoggedIn(loginResult);
       setUsername(loginInput.username);
-      setErrors(null);
+      setErrors({
+        signup: null, authenticate: null
+      });
     }
     catch (err) {
-      console.log("signup failed:", err);
-      setErrors(err);
+      console.log("login failed:", err);
+      setErrors(data => ({...data, authenticate: err}));
     }
   }
 
@@ -66,13 +70,16 @@ function App() {
       console.log("signin result:", signinResult);
       setLoggedIn(signinResult);
       setUsername(signupInput.username);
-      setErrors(null);
+      setErrors({
+        signup: null, authenticate: null
+      });
     }
     catch (err) {
       console.log("signup failed:", err);
-      setErrors(err);
-    }
+      setErrors(data => ({...data, signup: err}));
+    };
   }
+
 
   /** Log out a user from the app. */
   function logout() {

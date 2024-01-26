@@ -59,11 +59,11 @@ function LoginForm({ authenticate }) {
       <button className="btn-secondary btn" onClick={handleSubmit}>
         Login
       </button>
-      { errors &&
+      { errors.authenticate &&
       <div>
         <h3>Errors:</h3>
         {
-          errors.map((err, idx) =>
+          errors.authenticate.map((err, idx) =>
           <div key={`error-${idx}`}>{err}</div>
           )
         }
