@@ -13,17 +13,15 @@ import useLocalStorage from 'use-local-storage';
  * -None
  *
  * States:
- * -user - null or {username, firstName, lastName, email, isAdmin }
- * -loggedIn (true/false)
- * -username (logged in username)
- * -message (login or logout message)
+ * -user - null or {username, firstName, lastName, email, isAdmin } *
+ *
  *
  * App -> {Navigation, RoutesList}
  */
 
 function App() {
   const [user, setUser] = useState(null);
-  const [token, setToken] = useLocalStorage('name','');
+  const [token, setToken] = useLocalStorage('login',{username: "", token: ""});
   const isLoggedIn = (user !== null);
   console.log("App component rendered, user:", user);
   console.log("App user:", user, "loggedIn:", isLoggedIn);
@@ -43,7 +41,7 @@ function App() {
   /** Authenticate a user for log in. */
   async function authenticate(loginInput) {
     const tokenResult = await JoblyApi.login(loginInput);
-    setToken(tokenResult);
+    setToken({username: loginInput.username, token: tokenResult});
     console.log("token result:", tokenResult);
     await getUserData(loginInput.username);
   }
