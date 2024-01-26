@@ -104,18 +104,33 @@ class JoblyApi {
 
 
   /**
-   * takes user data and calls /users/register endpoint   *
+   * takes user data and calls /auth/register endpoint   *
    * Must include { username, password, firstName, lastName, email }
    * registers new user
    *
    * returns token
    */
   static async signup(userData) {
-    const userToken = await this.request(
-      'users/register', userData, 'POST');
+    const userTokenResult = await this.request(
+      'auth/register', userData, 'POST');
 
-    return userToken;
+    return userTokenResult.token;
   }
+
+
+    /**
+   * takes user data and calls /auth/token endpoint   *
+   * Must include { username, password }
+   * logs in user
+   *
+   * returns token
+   */
+    static async login(userData) {
+      const userTokenResult = await this.request(
+        'auth/token', userData, 'POST');
+
+      return userTokenResult.token;
+    }
 
   /**
    * takes username makes a fetch requst to users/:username endpoint
@@ -124,10 +139,9 @@ class JoblyApi {
    */
 
   static async getUser(username) {
-    const userData = await this.request(
-      `users/${username}`);
+    const usersData = await this.request(`users`);
 
-      return userData;
+    return usersData.filter(user => user.username === username);
   }
 }
 

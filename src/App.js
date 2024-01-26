@@ -22,38 +22,46 @@ function App() {
   const [token, setToken] = useState(null);
   const [username, setUsername] = useState(null);
 
-  console.log("App component rendered, user:", user);
+  console.log("App component rendered, user:", user, "token:", token);
 
 
-  useEffect(function getUserDataOnMount() {
-    async function getUserData() {
-
-      if (username !== null) {
-        const userData = await JoblyApi.getUser(username);
-        setUser(userData);
-      } else {
-        setUser(null);
-      }
-    }
-    getUserData();
-  },[username]);
+  // useEffect(function getUserDataOnMount() {
+  //   async function getUserData() {
+  //     console.log("App useEffect getUserDataOnMount")
+  //     if (username !== null) {
+  //       const userData = await JoblyApi.getUser(username);
+  //       setUser(userData);
+  //     } else {
+  //       setUser(null);
+  //     }
+  //   }
+  //   getUserData();
+  // },[username]);
 
   /** Authenticate a user for log in. */
-  function authenticate(loginInput) {
-    const userInfo = {}; // add api call to log in
+  async function authenticate(loginInput) {
 
-    setUser(userInfo);
+    try {
+      const userToken = await JoblyApi.login(loginInput);
+      console.log("signup user token:", userToken)
+      setToken(userToken);
+    }
+    catch (err) {
+      console.log("signup failed:", err);
+    }
   }
 
   /** Sign up a user. */
   async function signup(signupInput) {
-    const userInfo = signupInput;
 
-    const userToken = await JoblyApi.signup(userInfo);
-
-
-    setToken(userToken);
-    setUsername(userInfo.username);
+    try {
+      const userToken = await JoblyApi.signup(signupInput);
+      console.log("signup user token:", userToken)
+      setToken(userToken);
+    }
+    catch (err) {
+      console.log("signup failed:", err);
+    }
   }
 
   /** Log out a user from the app. */

@@ -10,11 +10,12 @@ import "./Homepage.css"
  * RoutesList -> Homepage
  */
 
-function Homepage() {
+function Homepage({ message }) {
   console.log("Homepage component rendered");
 
   return (
     <div className='Homepage'>
+    {message && <h2>{message}</h2>}
     <h1>
       Jobly
     </h1>

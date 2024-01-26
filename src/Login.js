@@ -1,3 +1,5 @@
+import LoginForm from "./LoginForm";
+
 /** renders login page
  *
  * props: authenticate()
@@ -11,8 +13,8 @@
 function Login({ authenticate }) {
 
   return (
-    <div>
-
+    <div className="Login">
+      <LoginForm authenticate={authenticate}/>
     </div>
   )
 }
