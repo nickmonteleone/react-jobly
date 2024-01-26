@@ -36,7 +36,14 @@ function Homepage() {
       Jobly
     </h1>
     <h2>Find jobs and stuff!</h2>
+    {user === null &&
+      <div>
+      <button>Signup</button>
+      <button>Login</button>
+      </div>
+    }
     </div>
+
   )
 }
 
