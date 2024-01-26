@@ -22,10 +22,7 @@ import JoblyApi from './api';
 
 function App() {
   const [user, setUser] = useState(null);
-  // const [loggedIn, setLoggedIn] = useState(false);
-  const [message, setMessage] = useState(null);
-  //TODO: remove loggedIn state because it is derived from user
-  const loggedIn = (user !== null);
+  const isLoggedIn = (user !== null);
   console.log("App component rendered, user:", user);
   console.log("App username:", username, "loggedIn:", loggedIn);
 
@@ -41,22 +38,20 @@ function App() {
       setUser(null);
     }
   }
-  //TODO: remove setter for logged in
+
   /** Authenticate a user for log in. */
   async function authenticate(loginInput) {
     const loginResult = await JoblyApi.login(loginInput);
     console.log("login result:", loginResult);
     await getUserData(loginInput.username);
-    setLoggedIn(loginResult);
   }
 
-  //TODO: repeat change to use getUserData
+
   /** Sign up a user. */
   async function signup(signupInput) {
     const signinResult = await JoblyApi.signup(signupInput);
     console.log("signin result:", signinResult);
-    setLoggedIn(signinResult);
-    setUsername(signupInput.username);
+    await getUserData(LoginInput.username);
   }
 
   /** Log out a user from the app. */
@@ -69,8 +64,7 @@ function App() {
   }
 
   return (
-    // TODO: pass isLoggedin const because it will be easier to use in children
-    <userContext.Provider value={{ user, message }}>
+    <userContext.Provider value={{ user, message, isLoggedIn }}>
       <div className="App">
         <BrowserRouter>
           <Navigation logout={logout} user={user} />
