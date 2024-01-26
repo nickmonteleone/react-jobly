@@ -21,6 +21,7 @@ function App() {
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(null);
   const [username, setUsername] = useState(null);
+  const [errors, setErrors] = useState(null);
 
   console.log("App component rendered, user:", user, "token:", token);
 
@@ -61,6 +62,7 @@ function App() {
     }
     catch (err) {
       console.log("signup failed:", err);
+      setErrors(errors);
     }
   }
 
@@ -70,12 +72,15 @@ function App() {
   }
 
   return (
-    <div className="App">
-      <BrowserRouter>
-        <Navigation user={user} />
-        <RoutesList user={user} signup={signup} authenticate={authenticate} />
-      </BrowserRouter>
-    </div>
+    <userContext.Provider value = {{user, errors}}>
+      <div className="App">
+        <BrowserRouter>
+          <Navigation user={user} />
+          <RoutesList user={user} signup={signup} authenticate={authenticate} />
+        </BrowserRouter>
+      </div>
+    </userContext.Provider>
+
   );
 }
 

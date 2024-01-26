@@ -1,4 +1,6 @@
 import "./Homepage.css"
+import { useContext } from 'react';
+import userContext from "./userContext";
 
 /**
  * renders homepage
@@ -10,12 +12,16 @@ import "./Homepage.css"
  * RoutesList -> Homepage
  */
 
-function Homepage({ message }) {
+function Homepage() {
+  const { errors } = useContext(userContext);
   console.log("Homepage component rendered");
+//if errors render them
 
   return (
+    //TODO: errors not showing up on homepage
+
     <div className='Homepage'>
-    {message && <h2>{message}</h2>}
+    {errors && <h2>{errors[0]}</h2>}
     <h1>
       Jobly
     </h1>
