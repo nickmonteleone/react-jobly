@@ -1,5 +1,6 @@
 import "./Signup.css"
 import { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 
 /**
  * renders signup form
@@ -23,6 +24,8 @@ function SignupForm({ signup }) {
     }
   );
 
+  const navigate = useNavigate();
+
   /** Handle input to form. */
   function handleChange(evt) {
     const { name, value } = evt.target;
@@ -37,6 +40,7 @@ function SignupForm({ signup }) {
     evt.preventDefault();
     console.log('signup formData', formData);
     signup(formData);
+    navigate('/');
   }
 
   return (
@@ -50,6 +54,7 @@ function SignupForm({ signup }) {
       <input
         className="form-control"
         name="password"
+        type="password"
         onChange={handleChange}
         placeholder="password"
       />
@@ -68,6 +73,7 @@ function SignupForm({ signup }) {
       <input
         className="form-control"
         name="email"
+        type="email"
         onChange={handleChange}
         placeholder="email"
       />

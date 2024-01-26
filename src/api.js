@@ -108,17 +108,11 @@ class JoblyApi {
    * Must include { username, password, firstName, lastName, email }
    * registers new user
    *
-   * returns {user, token}
+   * returns token
    */
   static async signup(userData) {
-
-    let userToken;
-    try {
-      userToken = await this.request(
-        'users/register', userData, 'POST');
-    } catch (BadRequestError) {
-      throw new Error('bad request');
-    }
+    const userToken = await this.request(
+      'users/register', userData, 'POST');
 
     return userToken;
   }
@@ -130,8 +124,10 @@ class JoblyApi {
    */
 
   static async getUser(username) {
+    const userData = await this.request(
+      `users/${username}`);
 
-
+      return userData;
   }
 }
 

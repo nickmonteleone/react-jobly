@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import CompanyDetail from "./CompanyDetail";
 import JoblyApi from "./api";
 import LoadingSpinner from "./LoadingSpinner";
