@@ -55,10 +55,10 @@ function App() {
 
   /** Sign up a user. */
   async function signup(signupInput) {
-      const signinResult = await JoblyApi.signup(signupInput);
-      console.log("signin result:", signinResult);
-      setLoggedIn(signinResult);
-      setUsername(signupInput.username);
+    const signinResult = await JoblyApi.signup(signupInput);
+    console.log("signin result:", signinResult);
+    setLoggedIn(signinResult);
+    setUsername(signupInput.username);
   }
 
   /** Log out a user from the app. */

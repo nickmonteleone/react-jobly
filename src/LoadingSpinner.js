@@ -9,6 +9,7 @@ import "./LoadingSpinner.css"
  *
  * {JobList, CompaniesList, Company} -> LoadingSpinner
  */
+
 function LoadingSpinner() {
   console.log("LoadingSpinner rendered");
   return (
