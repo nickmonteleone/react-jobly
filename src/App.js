@@ -21,6 +21,7 @@ import useLocalStorage from 'use-local-storage';
 
 function App() {
   const [user, setUser] = useState(null);
+  //TODO: get username using decode
   const [storedLogin, setStoredLogin] = useLocalStorage(
     'storedLogin', { username: null, token: null }
   );
@@ -63,6 +64,8 @@ function App() {
     }
   }
 
+  //TODO: ln 73 83, get username from token.
+
   /** Authenticate a user for log in. */
   async function authenticate(loginInput) {
     const tokenResult = await JoblyApi.login(loginInput);
@@ -87,7 +90,7 @@ function App() {
   function logout() {
     JoblyApi.logout();
     setUser(null);
-    setStoredLogin({ user: null, token: null });
+    setStoredLogin({ username: null, token: null });
   }
 
   return (

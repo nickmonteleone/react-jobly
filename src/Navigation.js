@@ -11,7 +11,7 @@ import { NavLink, Link } from "react-router-dom";
  *
  * App -> Navigation
 */
-
+//TODO: ln 21, put isLoggedIn in context and use it on line 21
 function Navigation({ logout, user }) {
   return (
     <nav className="Navigation">

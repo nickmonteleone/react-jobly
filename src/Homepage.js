@@ -17,16 +17,17 @@ function Homepage() {
   const { user, isLoggedIn } = useContext(userContext);
   console.log("Homepage - user:", user);
 
+  //TODO: move ? and : to the left
   return (
     <div className='Homepage'>
       <h1>
         Jobly
       </h1>
       <h2>Find jobs and stuff!</h2>
-      { isLoggedIn ?
-      <h3>
-        Hi {user.username}!
-      </h3> :
+      {isLoggedIn ?
+        <h3>
+          Hi {user.username}!
+        </h3> :
         <div className="Homepage-buttons">
           <Link to="/signup">
             <button
