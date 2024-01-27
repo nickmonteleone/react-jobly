@@ -14,17 +14,28 @@ import useLocalStorage from 'use-local-storage';
  *
  * States:
  * -user - null or {username, firstName, lastName, email, isAdmin } *
- *
+ * -storedLogin {user: null or {userData}, token: null or tokenStr}
  *
  * App -> {Navigation, RoutesList}
  */
 
 function App() {
   const [user, setUser] = useState(null);
-  const [token, setToken] = useLocalStorage('login',{username: "", token: ""});
+  const [storedLogin, setStoredLogin] = useLocalStorage(
+    'storedLogin', { user: null, token: null }
+  );
   const isLoggedIn = (user !== null);
   console.log("App component rendered, user:", user);
   console.log("App user:", user, "loggedIn:", isLoggedIn);
+
+  // if not logged in check local storage to see if info in local storage
+  if (!isLoggedIn &&
+    storedLogin.user !== null && storedLogin.token !== null) {
+    // log in from local storage info
+    setUser(storedLogin.user);
+    JoblyApi.setToken(storedLogin.token);
+    console.log("Logged in user from local storage:", storedLogin.user);
+  }
 
   // Get user data when user name changes (i.e. log in or signup success)
   async function getUserData(username) {
@@ -32,7 +43,10 @@ function App() {
     if (username !== null) {
       const userData = await JoblyApi.getUser(username);
       setUser(userData);
-      console.log("userdata acquired", userData);
+      setStoredLogin(stored => ({
+        ...stored, user: userData
+      }));
+      console.log("userdata acquired:", userData);
     } else {
       setUser(null);
     }
@@ -41,18 +55,19 @@ function App() {
   /** Authenticate a user for log in. */
   async function authenticate(loginInput) {
     const tokenResult = await JoblyApi.login(loginInput);
-    setToken({username: loginInput.username, token: tokenResult});
+    setStoredLogin(stored => ({
+      ...stored, token: tokenResult
+    }));
     console.log("token result:", tokenResult);
     await getUserData(loginInput.username);
   }
 
-
-
-
   /** Sign up a user. */
   async function signup(signupInput) {
     const tokenResult = await JoblyApi.signup(signupInput);
-    setToken(tokenResult);
+    setStoredLogin(stored => ({
+      ...stored, token: tokenResult
+    }));
     console.log("token result:", tokenResult);
     await getUserData(signupInput.username);
   }
@@ -61,7 +76,7 @@ function App() {
   function logout() {
     JoblyApi.logout();
     setUser(null);
-    setToken(null);
+    setStoredLogin({ user: null, token: null });
   }
 
   return (
@@ -78,14 +93,3 @@ function App() {
 }
 
 export default App;
-
-
-/**
- * login / signup -> token in localstorage
- *
- * come back: -> check localstorage for token,
- *  if there: assign to static token
- *  if not: show logged out UI.
- *
- *
- */

@@ -151,10 +151,19 @@ class JoblyApi {
     return userData.user;
   }
 
+  /** Logout user. Return true on success */
 
-  static logout(username) {
+  static logout() {
     this.token = null;
+    return true;
+  }
 
+  /** Set token. For use when token stored in local storage.
+   * Return true on success
+  */
+
+  static setToken(token) {
+    this.token = token;
     return true;
   }
 }
