@@ -22,29 +22,40 @@ import useLocalStorage from 'use-local-storage';
 function App() {
   const [user, setUser] = useState(null);
   const [storedLogin, setStoredLogin] = useLocalStorage(
-    'storedLogin', { user: null, token: null }
+    'storedLogin', { username: null, token: null }
   );
   const isLoggedIn = (user !== null);
   console.log("App component rendered, user:", user);
   console.log("App user:", user, "loggedIn:", isLoggedIn);
 
   // if not logged in check local storage to see if info in local storage
-  if (!isLoggedIn &&
-    storedLogin.user !== null && storedLogin.token !== null) {
-    // log in from local storage info
-    setUser(storedLogin.user);
-    JoblyApi.setToken(storedLogin.token);
-    console.log("Logged in user from local storage:", storedLogin.user);
-  }
+  useEffect(function loginFromLocalStorageOnMount() {
+    async function loginFromLocalStorage() {
+      JoblyApi.setToken(storedLogin.token);
+      // get user data to confirm token validity
+      try {
+        await getUserData(storedLogin.username);
+        console.log("Logged in user from local storage:", storedLogin.user);
+      }
+      catch (err) {
+        console.log("invalid token in local storage:", err);
+      }
+    }
+    if (!isLoggedIn &&
+      storedLogin.username !== null && storedLogin.token !== null) {
+      loginFromLocalStorage();
+    }
+  }, [])
 
-  // Get user data when user name changes (i.e. log in or signup success)
+  /** Get user data when user name changes (i.e. log in or signup success) */
+
   async function getUserData(username) {
     console.log("App useEffect getUserDataOnMount. username:", username);
     if (username !== null) {
       const userData = await JoblyApi.getUser(username);
       setUser(userData);
       setStoredLogin(stored => ({
-        ...stored, user: userData
+        ...stored, username
       }));
       console.log("userdata acquired:", userData);
     } else {
