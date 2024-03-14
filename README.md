@@ -6,3 +6,5 @@
 - Search functionality to show different job listings
 - Track applications to jobs
 - Ownership of applications, adding/editing
+
+## Node backend repository: https://github.com/nickmonteleone/express-jobly
